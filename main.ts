@@ -1,3 +1,7 @@
+input.onButtonPressed(Button.A, function () {
+    PA += 1
+    Rounds += 1
+})
 function showScoreboard () {
     OLED.clear()
     OLED.writeStringNewLine("Player A:" + PA)
@@ -8,6 +12,14 @@ function showScoreboard () {
     OLED.newLine()
     OLED.writeStringNewLine("Rounds:" + Rounds)
 }
+input.onButtonPressed(Button.AB, function () {
+    Ties += 1
+    Rounds += 1
+})
+input.onButtonPressed(Button.B, function () {
+    PB += 1
+    Rounds += 1
+})
 let Rounds = 0
 let Ties = 0
 let PB = 0
