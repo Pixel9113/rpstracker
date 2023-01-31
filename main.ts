@@ -1,6 +1,10 @@
 input.onButtonPressed(Button.A, function () {
+    basic.showString("A")
     PA += 1
     Rounds += 1
+    basic.pause(1000)
+    showScoreboard()
+    basic.clearScreen()
 })
 function showScoreboard () {
     OLED.clear()
@@ -13,22 +17,36 @@ function showScoreboard () {
     OLED.writeStringNewLine("Rounds:" + Rounds)
 }
 input.onButtonPressed(Button.AB, function () {
+    basic.showString("T")
     Ties += 1
     Rounds += 1
+    basic.pause(1000)
+    showScoreboard()
+    basic.clearScreen()
 })
 input.onButtonPressed(Button.B, function () {
+    basic.showString("B")
     PB += 1
     Rounds += 1
+    basic.pause(1000)
+    showScoreboard()
+    basic.clearScreen()
 })
-let Rounds = 0
+input.onGesture(Gesture.Shake, function () {
+    Reset()
+})
+function Reset () {
+    OLED.init(128, 64)
+    PA = 0
+    PB = 0
+    Ties = 0
+    Rounds = 0
+    OLED.writeStringNewLine("Shall we play a game?")
+    basic.pause(2000)
+    showScoreboard()
+}
 let Ties = 0
 let PB = 0
+let Rounds = 0
 let PA = 0
-OLED.init(128, 64)
-PA = 0
-PB = 0
-Ties = 0
-Rounds = 0
-OLED.writeStringNewLine("Shall we play a game?")
-basic.pause(2000)
-showScoreboard()
+Reset()
